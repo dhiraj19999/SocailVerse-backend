@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: true })); // To parse form data in the re
 app.use(cookieParser());
 
 // Routes
+
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/messages", messageRoutes);
@@ -44,7 +45,9 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
   });
 }
-
+app.get("/", async (req, res) => {
+  res.send("hello from server");
+});
 server.listen(PORT, () =>
   console.log(`Server started at http://localhost:${PORT}`)
 );
